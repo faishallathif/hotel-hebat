@@ -24,7 +24,7 @@ Route::any('/{path}', function () {
 
 Route::domain('admin.localhost')->group(function () {
     Route::get('/', function () {
-        return "from admin";    
+        return view('admin/index');    
     });
 });
 Route::domain('localhost')->group(function () {
