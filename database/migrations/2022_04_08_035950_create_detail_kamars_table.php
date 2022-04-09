@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKamarsTable extends Migration
+class CreateDetailKamarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateKamarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kamars', function (Blueprint $table) {
+        Schema::create('detail_kamars', function (Blueprint $table) {
             $table->id();
-            $table->integer("jumlah");
-            $table->double("harga");
-            $table->json("fasilitas");
-            $table->string("tipe_kamar");
+            $table->foreignId("kamar_id");
+            $table->string("no_kamar");
+            $table->string("status");
+            $table->foreignId("user_id")->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateKamarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kamars');
+        Schema::dropIfExists('detail_kamars');
     }
 }

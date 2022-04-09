@@ -7,7 +7,7 @@
     <title>Halaman Vue</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body class="bg-default">
+<body class="bg-danger">
     {{-- container vue --}}
     <div id="app" class="container-fluid">
         <nav-bar></nav-bar>

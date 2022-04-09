@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PesananController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,4 +31,8 @@ Route::domain('localhost')->group(function () {
     Route::get('/', function () {
       return view('welcome');
     });
+    Route::get('/pesanan/cetak/{id}',[PesananController::class,"cetak_pdf"]);
+    Route::get('/pesanan/cetak_pdf/{pesanan}',[PesananController::class,"show"]);
+
+
 });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kamar;
 use App\Models\Fasilitas;
+use App\Models\DetailKamar;
+
 
 use Illuminate\Http\Request;
 use App\Http\Responses\ResponseUtils;
@@ -14,39 +16,19 @@ class KamarController extends Controller
 {
     //
     public function index(){
-        try {
-            $data = Kamar::get()->map(function($item) {
-                $fasilitas = Fasilitas::whereIn('id', json_decode($item->fasilitas))->get();
-                return [
-                    'id' => $item->id,
-                    'id_kamar' => $item->id_kamar,
-                    "harga"=>$item->harga,
-                    "fasilitas"=>$fasilitas,
-                    "tipe_kamar"=>$item->tipe_kamar
-                ];
-            });
-
-            return response()->json([
-                'status' => true,
-                'data' => $data
-            ]);
-        } catch(Exception $e) {
-            return response()->json([
-                'status' => false,
-                'data' => $e->getMessage()
-            ]);
-        }
+        $data = Kamar::withFasilitas();
         return ResponseUtils::getValResponse(true, $data);
 
     }
-
+    public function show($id){
+        return kamar::withFasilitas($id);
+    }
     public function store(Request $request)
     {
         //
         $validator = Validator::make($request->all(), [
             "harga" => "required",
-            "id_kamar" => "required",
-            "harga" => "required",
+            "jumlah"=>"required",
             "fasilitas" => "required",
             "tipe_kamar" => "required",
         ], $messages = [
@@ -57,6 +39,22 @@ class KamarController extends Controller
             return ResponseUtils::simpleResponse(false, json_decode($validator->errors(), true));
         }
         $data = Kamar::create($request->all());
+        $jumlah=request()->jumlah;
+        for($i=1;$i<=$jumlah;$i++){
+            $noKamar=$i;
+            if($i<10){
+                $noKamar="00"+$i;
+            }elseif($i>10){
+                $noKamar="0"+$i;
+            }
+            DetailKamar::create(
+                [
+                    'kamar_id'=>$data->id,
+                    'no_kamar' => request()->tipe_kamar."-".$noKamar,
+                    "status"=>"open",
+                ]
+            );
+        }
         return ResponseUtils::defaultInsert(true, $data);
     }
 
