@@ -1,4 +1,6 @@
 @extends('../layouts/admin')
 @section('container')
-    <p>ini paragraph</p>
+   <div>
+       ini halaman dashboard admin
+    </div>
 @endsection

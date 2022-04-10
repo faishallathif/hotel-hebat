@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --ungu1: #7A17EE;
+    --ungu2: #CA84FF;
+  }
+.bg-primary{
+    background: linear-gradient(116.4deg, var(--ungu2) 26.69%, var(--ungu1) 78.25%);
+}
+.input-wrap{
+    @apply tw-flex tw-items-center tw-rounded-2xl tw-bg-white tw-p-3 tw-mb-5;
+}
+.input-wrap input{
+    @apply tw-ml-5 tw-w-72 ;
+}
+input{
+    outline: none;
+    color:var(--ungu1) ;
+}
+input::placeholder{
+    font-weight: bold;
+    color :var(--ungu1);
+}
+.btn-ungu1{
+    background: var(--ungu1);
+    @apply tw-p-3 tw-text-white tw-font-bold  tw-text-xl;
+}
+.btn-ungu2{
+    background: var(--ungu2);
+    @apply tw-p-3 tw-text-white tw-font-bold tw-w-28 tw-text-xl;
+}
+.flex-col-center{
+    @apply tw-flex tw-flex-col tw-justify-center tw-items-center;
+}
+.flex-between{
+    @apply tw-flex tw-justify-between tw-items-center;
+}
+.flex-center{
+    @apply tw-flex tw-justify-center tw-items-center;
+}
+.flex-col-end{
+    @apply tw-flex tw-flex-col tw-justify-center tw-items-end;
+}
+.flex-col{
+    @apply tw-flex tw-flex-col
+}
+.justify-between{
+    @apply tw-flex tw-justify-between tw-items-center;
+}

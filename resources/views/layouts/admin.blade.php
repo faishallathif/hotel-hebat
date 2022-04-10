@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-    <div class="">
+    {{-- <div class="">
     <div class="tw-bg-red-500 tw-w-1/5 tw-min-h-screen">
         <ul>
             <li>
@@ -18,8 +18,14 @@
                 <a href=""> Fasilitas</a>
             </li>
         </ul>
+    </div> --}}
+    <div id="app">
+
+        @yield('container')
     </div>
-@yield('container')
+<script src="{{  asset('js/app.js ')  }}"></script>
+
+</body>
 </div>
 
 </html>

@@ -18,36 +18,36 @@ class PesananController extends Controller
      */
     public function index()
     {
-        try {
-            $data = Pesanan::get()->map(function($item) {
-                // $kamar = Kamar::whereIn('id', json_decode($item->kamar_id))->get();
-                $kamars = collect(json_decode($item->kamar_id, true))->map(function($value){
-                    $fasilitas = Kamar::find($value);
-                    $realFasilitas = collect( json_decode($fasilitas->fasilitas,true))->map(function($v){
-                        return Fasilitas::find($v);
-                    });
-                    $realKamar = Kamar::find($value);
-                    $realKamar->fasilitas = $realFasilitas;
-                    return $realKamar;
-                }) ;
-                // $kamars = json_decode($item->kamar_id, true);
-                return [
-                    'id' => $item->id,
-                    'kamar' => $kamars,
-                    "harga"=>$item->harga,
-                    "jumlah"=>$item->jumlah,
-                    "tipe_kamar"=>$item->tipe_kamar
-                ];
-            });
+        $data = Pesanan::all();
+        // try {
+        //     $data = Pesanan::get()->map(function($item) {
+        //         // $kamar = Kamar::whereIn('id', json_decode($item->kamar_id))->get();
+        //         $kamars = collect(json_decode($item->kamar_id, true))->map(function($value){
+        //             $fasilitas = Kamar::find($value);
+        //             $realFasilitas = collect( json_decode($fasilitas->fasilitas,true))->map(function($v){
+        //                 return Fasilitas::find($v);
+        //             });
+        //             $realKamar = Kamar::find($value);
+        //             $realKamar->fasilitas = $realFasilitas;
+        //             return $realKamar;
+        //         }) ;
+        //         // $kamars = json_decode($item->kamar_id, true);
+        //         return [
+        //             'id' => $item->id,
+        //             'kamar' => $kamars,
+        //             "harga"=>$item->harga,
+        //             "jumlah"=>$item->jumlah,
+        //             "tipe_kamar"=>$item->tipe_kamar
+        //         ];
+        //     });
 
             return ResponseUtils::getValResponse(true, $data);
 
-        } catch(Exception $e) {
-            return ResponseUtils::getValResponse(true, $e->getMessage());
+        // } catch(Exception $e) {
+        //     return ResponseUtils::getValResponse(true, $e->getMessage());
 
-        }
+        // }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -66,21 +66,37 @@ class PesananController extends Controller
     public function store()
     {
         $validator = Validator::make(request()->all(), [
-            "harga" => "required",
             "kamar_id" => "required",
-            "harga" => "required",
+            "no_kamar" => "required",
+            "user_id"=>"required",
             "tanggal_masuk" => "required",
             "tanggal_keluar"=>"required",
-            "tipe_kamar" => "required",
+            "jumlah_pesanan"=>"required"
         ], $messages = [
             'required' => ConstantString::$required,
         ]);
         if ($validator->fails()) {
-            // return response()->json(json_decode($validator->errors(), true), 400);
             return ResponseUtils::simpleResponse(false, json_decode($validator->errors(), true));
         }
+        $kamar = Kamar::find(request()->kamar_id);
+        if(!$kamar){
+            return ResponseUtils::notFound();
+        }
+        $tgl1 = strtotime( request()->tanggal_masuk);
+        $tgl2 = strtotime( request()->tanggal_keluar);
+        $jarak = $tgl2 - $tgl1;
+        $hari = ($jarak / 60 / 60 / 24)+1;
+        request()->request->add([
+            "jumlah_hari"=>$hari,//get jumlah hari dari selisih tgl1 - tgl2,
+            "harga"=>$kamar->harga,
+            "tipe_kamar"=>$kamar->tipe_kamar,
+            "jumlah_harga"=>$kamar->harga*request()->jumlah_pesanan*$hari,
+        ]); 
+        // return request()->all();
         $data = Pesanan::create(request()->all());
         return ResponseUtils::defaultInsert(true, $data);
+        
+
     }
 
     /**
@@ -94,10 +110,15 @@ class PesananController extends Controller
         if(!$pesanan){
             return ResponseUtils::notFound();
         }
-        return ResponseUtils::getValResponse(true, $pesanan);
+        $pesanan->no_kamar = json_decode( $pesanan->no_kamar);
+        return view('pesanan_pdf',[
+            "data"=>$pesanan
+        ]);
+        // return ResponseUtils::getValResponse(true, $pesanan);
         
     }
 
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -139,12 +160,14 @@ class PesananController extends Controller
         }
         return ResponseUtils::defaultDelete(true,$pesanan);
     }
-
+   
     public function cetak_pdf($id)
     {
     	$pesanan = Pesanan::find($id);
- 
-    	$pdf = PDF::loadview('pesanan_pdf',['pesanan'=>$Pesanan]);
-    	return $pdf->download('laporan-pesanan-pdf');
+        $pesanan->no_kamar = json_decode( $pesanan->no_kamar);
+        
+        view()->share('data',$pesanan);
+    	$pdf = PDF::loadview('pesanan_pdf');
+    	return $pdf->download('pesanan-'.$pesanan->id.'.pdf');
     }
 }
