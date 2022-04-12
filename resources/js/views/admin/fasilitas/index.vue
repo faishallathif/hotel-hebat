@@ -5,18 +5,31 @@
         <vs-table>
           <template #thead>
             <vs-tr>
-              <vs-th sort @click="tableData = $vs.sortData($event, tableData, 'name')">
+              <vs-th
+                sort
+                @click="tableData = $vs.sortData($event, tableData, 'name')"
+              >
                 Nama Fasilitas
               </vs-th>
-              <vs-th sort @click="tableData = $vs.sortData($event, tableData, 'email')">
+              <vs-th
+                sort
+                @click="tableData = $vs.sortData($event, tableData, 'email')"
+              >
                 Gambar
               </vs-th>
-              <vs-th sort @click="tableData = $vs.sortData($event, tableData, 'id')">
-                Status  
+              <vs-th
+                sort
+                @click="tableData = $vs.sortData($event, tableData, 'id')"
+              >
+                Status
               </vs-th>
               <th>
-                 <vs-button
-                 success @click="centerDialogVisible=true;buttonDialog='Tambah'"
+                <vs-button
+                  success
+                  @click="
+                    centerDialogVisible = true;
+                    buttonDialog = 'Tambah';
+                  "
                 >
                   <i class="el-icon-plus"></i> Tambah
                 </vs-button>
@@ -33,21 +46,21 @@
                 {{ tr.nama_fasilitas }}
               </vs-td>
               <vs-td>
-                <img :src="tr.gambar" alt="">
+                <img :src="tr.gambar" alt="" />
               </vs-td>
               <vs-td>
                 {{ tr.status }}
               </vs-td>
               <vs-td>
-                 <vs-button
-                 @click="centerDialogVisible=true;buttonDialog='Edit'"
+                <vs-button
+                  @click="
+                    centerDialogVisible = true;
+                    buttonDialog = 'Edit';
+                  "
                 >
                   <i class="el-icon-edit"></i> Edit
                 </vs-button>
-                  <vs-button
-                  danger
-                  @click="handleDelete(tr.id)"
-                >
+                <vs-button danger @click="handleDelete(tr.id)">
                   <i class="el-icon-delete"></i> Delete
                 </vs-button>
               </vs-td>
@@ -98,6 +111,12 @@
         </el-form-item>
       </el-form>
     </el-dialog>
+    <div
+      class="flex-center tw-absolute tw-inset-0 tw-bg-black tw-opacity-20"
+      v-if="loader"
+    >
+      <vue-loaders-ball-scale-ripple-multiple />
+    </div>
   </div>
 </template>
 
@@ -106,6 +125,7 @@ import FasilitasService from "../../../service/FasilitasService";
 export default {
   data() {
     return {
+      loader: false,
       tableData: [],
       centerDialogVisible: false,
       // nama_fasilitas:"",
@@ -132,11 +152,13 @@ export default {
   },
   methods: {
     get() {
+      this.loader = true;
       FasilitasService.get().then((res) => {
+        this.loader = false;
         this.tableData = res.data.data;
       });
     },
-    tambah() {
+    tambah() {    
       FasilitasService.post(this.formData).then((res) => {
         this.tableData = res.data.data;
         this.centerDialogVisible = false;
@@ -161,9 +183,7 @@ export default {
         this.get();
       });
     },
-    getData(){
-      
-    }
+    getData() {},
   },
 };
 </script>

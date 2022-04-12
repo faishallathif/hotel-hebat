@@ -16,6 +16,12 @@ class KamarService {
         }
         return axios.get(BaseUrl+ ApiRoute.detailKamar);
     }
+    put(formData){
+        return axios.put(BaseUrl+ ApiRoute.kamar+formData.id,formData);
+    }
+    delete(id){
+        return axios.delete(BaseUrl+ ApiRoute.kamar+id);
+    }
 }
 
 export default new KamarService();

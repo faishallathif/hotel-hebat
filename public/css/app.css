@@ -11721,6 +11721,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-relative {
   position: relative;
 }
+.tw-inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
 .tw-top-0 {
   top: 0px;
 }
@@ -11826,6 +11832,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.tw-bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
 .tw-pr-5 {
   padding-right: 1.25rem;
 }
@@ -11858,6 +11868,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.tw-opacity-50 {
+  opacity: 0.5;
+}
+.tw-opacity-30 {
+  opacity: 0.3;
+}
+.tw-opacity-20 {
+  opacity: 0.2;
 }
 *{
     margin: 0;

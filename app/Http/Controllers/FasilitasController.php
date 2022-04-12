@@ -17,7 +17,6 @@ class FasilitasController extends Controller
     {
         //
         $data = Fasilitas::all();
-
         if(request()->status){
             $data = Fasilitas::where("status",request()->status)->get();
         }

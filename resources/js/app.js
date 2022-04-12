@@ -37,6 +37,10 @@ import 'vuesax/dist/vuesax.css' //Vuesax styles
 Vue.use(Vuesax, {
   // options here
 })
+import 'vue-loaders/dist/vue-loaders.css';
+import VueLoaders from 'vue-loaders';
+
+Vue.use(VueLoaders);
 
 // inisialisasi vue
 const app = new Vue({

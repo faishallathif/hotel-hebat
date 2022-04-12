@@ -4,7 +4,10 @@ import ApiRoute from './ApiRoute';
 import BaseUrl from './BaseUrl';
 
 class FasilitasService {
-    get(){
+    get(status){
+        if(status){
+            return axios.get(BaseUrl+ "api/fasilitas?status="+status);
+        }
         return axios.get(BaseUrl+ ApiRoute.fasilitas);
     }
     post(formData){

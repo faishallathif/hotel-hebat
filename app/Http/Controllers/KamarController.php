@@ -39,8 +39,14 @@ class KamarController extends Controller
             return ResponseUtils::simpleResponse(false, json_decode($validator->errors(), true));
         }
         $data = Kamar::create($request->all());
-        $jumlah=request()->jumlah;
-        for($i=1;$i<=$jumlah;$i++){
+        Kamar::generateDetail($data);
+        return ResponseUtils::defaultInsert(true, $data);
+    }
+    public function update(Request $request,$id){
+        $data = Kamar::where("id",$id)->first();
+        DetailKamar::where("kamar_id",$id)->delete();
+
+        for($i=1;$i<=$request->jumlah;$i++){
             $noKamar=$i;
             if($i<10){
                 $noKamar="00"+$i;
@@ -49,17 +55,12 @@ class KamarController extends Controller
             }
             DetailKamar::create(
                 [
-                    'kamar_id'=>$data->id,
-                    'no_kamar' => request()->tipe_kamar."-".$noKamar,
+                    'kamar_id'=>$request->id,
+                    'no_kamar' => $request->tipe_kamar."-".$noKamar,
                     "status"=>"open",
                 ]
             );
         }
-        return ResponseUtils::defaultInsert(true, $data);
-    }
-
-    public function update(Request $request,$id){
-        $data = Kamar::where("id",$id)->first();
         $data->update($request->all());
         return ResponseUtils::defaultUpdate(true, $data);
     }
