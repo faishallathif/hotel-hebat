@@ -6,7 +6,7 @@
                     class="col"
                     placeholder="Type something"
                     prefix-icon="el-icon-search"
-                    v-model="search">
+                    v-model="$store.state.search">
                 </el-input>
                 <div class="col">
                     <el-dropdown>

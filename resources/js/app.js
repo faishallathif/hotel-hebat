@@ -4,6 +4,7 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 // import vue-router dulu
 import VueRouter from 'vue-router';
+import {store} from './store/store';
 import router from './router';
 import router2 from './router/index2';
 Vue.use(VueRouter)
@@ -30,7 +31,12 @@ Vue.component('top-nav',require('./components/Topnav.vue').default)
 Vue.component('admin-view',require('./views/admin/index.vue').default)
 Vue.component("vector-admin",require("./components/vector/vector-admin.vue").default)
 Vue.component("vector-logo",require("./components/vector/vector-logo.vue").default)
+import Vuesax from 'vuesax'
 
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+Vue.use(Vuesax, {
+  // options here
+})
 
 // inisialisasi vue
 const app = new Vue({
@@ -38,5 +44,6 @@ const app = new Vue({
     data: {
         title: "hello UKOM"
     },
-    router:route
+    router:route,
+    store,
 });
