@@ -23,7 +23,7 @@
                         </svg>                        
                     <input type="password" placeholder="Password" name="password">
                 </div>
-                <button type="submit" class="btn-ungu2">Login</button>
+                <button type="submit" class="btn-ungu2 tw-rounded-2xl tw-w-52">Login</button>
             </form>
         </div>
     </div>

@@ -121,12 +121,17 @@ class FasilitasController extends Controller
         if(!$fasilita){
             return ResponseUtils::notFound();
         }
-        $gambar = explode('/', $fasilita->gambar);
-        $filename = end($gambar);
-        try {
-            unlink('images/fasilitas/' . $filename);
-        } catch (Exception $e) {
+        if($fasilita->gambar){
+
+            $gambar = explode('/', $fasilita->gambar);
+            $filename = end($gambar);
+            try {
+                unlink('images/fasilitas/' . $filename);
+            } catch (Exception $e) {
+            }
         }
+        $fasilita->delete();
+
         return ResponseUtils::defaultDelete(true,$fasilita);
     }
 }

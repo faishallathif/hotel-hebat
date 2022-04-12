@@ -8,23 +8,12 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-    {{-- <div class="">
-    <div class="tw-bg-red-500 tw-w-1/5 tw-min-h-screen">
-        <ul>
-            <li>
-                <a href=""> Kamar     </a>
-            </li>
-            <li>
-                <a href=""> Fasilitas</a>
-            </li>
-        </ul>
-    </div> --}}
     <div id="app">
-
-        @yield('container')
+        <side-bar></side-bar>
+        <top-nav></top-nav>
+        <router-view></router-view>
     </div>
 <script src="{{  asset('js/app.js ')  }}"></script>
-
 </body>
 </div>
 

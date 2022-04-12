@@ -152,19 +152,17 @@ class UserController extends Controller
         try {
 
             if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
+                return ResponseUtils::simpleResponse(true,"User tidak ditemukan");
+
             }
         } catch (TokenExpiredException $e) {
+            return ResponseUtils::simpleResponse(true,"Sesi anda telah berakhir");
 
-            return response()->json(['token_expired']);
         } catch (TokenInvalidException $e) {
-
-            return response()->json(['token_invalid']);
+            return ResponseUtils::simpleResponse(true,"User tidak ditemukan");
         } catch (JWTException $e) {
-
-            return response()->json(['token_absent']);
+            return ResponseUtils::simpleResponse(true,"User tidak ditemukan");
         }
-
         return response()->json(compact('user'));
     }
 }

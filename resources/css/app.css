@@ -9,6 +9,9 @@
 :root {
     --ungu1: #7A17EE;
     --ungu2: #CA84FF;
+    --pink1: #FD71AF;
+    --pink2: #FFF8FB;
+
   }
 .bg-primary{
     background: linear-gradient(116.4deg, var(--ungu2) 26.69%, var(--ungu1) 78.25%);
@@ -27,13 +30,16 @@ input::placeholder{
     font-weight: bold;
     color :var(--ungu1);
 }
+.tw-btn{
+     @apply tw-p-2 tw-text-white tw-font-bold tw-text-xl;
+}
 .btn-ungu1{
     background: var(--ungu1);
-    @apply tw-p-3 tw-text-white tw-font-bold  tw-text-xl;
+    @apply tw-btn;
 }
 .btn-ungu2{
     background: var(--ungu2);
-    @apply tw-p-3 tw-text-white tw-font-bold tw-w-28 tw-text-xl;
+    @apply tw-btn;
 }
 .flex-col-center{
     @apply tw-flex tw-flex-col tw-justify-center tw-items-center;
@@ -52,4 +58,30 @@ input::placeholder{
 }
 .justify-between{
     @apply tw-flex tw-justify-between tw-items-center;
+}
+.top-nav{
+    position: absolute;
+    padding: 20px;
+    left: 100px;
+    top: 20px;
+    right: 20px;
+}
+.content-dashboard{
+    position: absolute;
+    padding: 20px;
+    left: 100px;
+    top: 130px;
+    right: 20px;
+}
+.top-nav .el-icon-arrow-down {
+    font-size: 12px;
+}
+.top-nav .el-input__prefix {
+    left: 15px;
+}
+.tw-card{
+    @apply flex-col-center tw-shadow-lg tw-bg-white tw-px-5 tw-py-8;
+}
+.title{
+    @apply tw-text-2xl tw-font-bold;
 }

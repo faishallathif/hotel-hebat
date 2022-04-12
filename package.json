@@ -26,6 +26,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "vue-router": "^3.5.3"
+        "element-ui": "^2.15.6",
+        "vue-router": "^3.5.3",
+        "vue-slick-carousel": "^1.0.6"
     }
 }

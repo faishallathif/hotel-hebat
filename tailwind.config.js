@@ -22,6 +22,12 @@ module.exports = {
       minHeight: {
         '80': '80vh',
         '20': '20vh',
+      },
+      colors:{
+        "ungu1": "#7A17EE",
+        "ungu2": "#CA84FF",
+        "pink1": "#FD71AF",
+        "pink2": "#FFF8FB",
       }
   }
 },

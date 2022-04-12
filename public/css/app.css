@@ -11712,8 +11712,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.tw-fixed {
+  position: fixed;
+}
 .tw-absolute {
   position: absolute;
+}
+.tw-relative {
+  position: relative;
 }
 .tw-top-0 {
   top: 0px;
@@ -11724,19 +11730,23 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-z-10 {
   z-index: 10;
 }
-.tw-mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
 .tw-my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
-.tw-mb-14 {
-  margin-bottom: 3.5rem;
+.tw-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.tw-my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 .tw-mb-10 {
   margin-bottom: 2.5rem;
+}
+.tw-mb-14 {
+  margin-bottom: 3.5rem;
 }
 .tw-ml-3 {
   margin-left: 0.75rem;
@@ -11747,17 +11757,32 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-flex {
   display: flex;
 }
+.tw-table {
+  display: table;
+}
+.tw-table-column {
+  display: table-column;
+}
 .tw-grid {
   display: grid;
+}
+.tw-h-80 {
+  height: 80vh;
+}
+.tw-h-full {
+  height: 100%;
 }
 .tw-h-20 {
   height: 20vh;
 }
+.tw-min-h-screen {
+  min-height: 100vh;
+}
 .tw-min-h-80 {
   min-height: 80vh;
 }
-.tw-min-h-screen {
-  min-height: 100vh;
+.tw-w-52 {
+  width: 13rem;
 }
 .tw-w-9\/12 {
   width: 75%;
@@ -11765,8 +11790,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-w-60 {
   width: 15rem;
 }
-.tw-w-1\/5 {
-  width: 20%;
+.tw-cursor-pointer {
+  cursor: pointer;
 }
 .tw-grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -11783,12 +11808,19 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-self-end {
   align-self: flex-end;
 }
+.tw-rounded-2xl {
+  border-radius: 1rem;
+}
 .tw-rounded-full {
   border-radius: 9999px;
 }
-.tw-bg-red-500 {
+.tw-bg-pink2 {
   --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+  background-color: rgb(255 248 251 / var(--tw-bg-opacity));
+}
+.tw-bg-pink1 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 113 175 / var(--tw-bg-opacity));
 }
 .tw-bg-white {
   --tw-bg-opacity: 1;
@@ -11797,17 +11829,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-pr-5 {
   padding-right: 1.25rem;
 }
-.tw-text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
 .tw-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-.tw-text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 .tw-text-6xl {
   font-size: 3.75rem;
@@ -11816,6 +11840,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+.tw-text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+.tw-text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 .tw-font-bold {
   font-weight: 700;
@@ -11835,6 +11867,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 :root {
     --ungu1: #7A17EE;
     --ungu2: #CA84FF;
+    --pink1: #FD71AF;
+    --pink2: #FFF8FB;
+
   }
 .bg-primary{
     background: linear-gradient(116.4deg, var(--ungu2) 26.69%, var(--ungu1) 78.25%);
@@ -11868,9 +11903,17 @@ input::placeholder{
     font-weight: bold;
     color :var(--ungu1);
 }
+.tw-btn {
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 .btn-ungu1{
     background: var(--ungu1);
-    padding: 0.75rem;
+    padding: 0.5rem;
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 700;
@@ -11879,8 +11922,7 @@ input::placeholder{
 }
 .btn-ungu2{
     background: var(--ungu2);
-    width: 7rem;
-    padding: 0.75rem;
+    padding: 0.5rem;
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 700;
@@ -11917,4 +11959,44 @@ input::placeholder{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.top-nav{
+    position: absolute;
+    padding: 20px;
+    left: 100px;
+    top: 20px;
+    right: 20px;
+}
+.content-dashboard{
+    position: absolute;
+    padding: 20px;
+    left: 100px;
+    top: 130px;
+    right: 20px;
+}
+.top-nav .el-icon-arrow-down {
+    font-size: 12px;
+}
+.top-nav .el-input__prefix {
+    left: 15px;
+}
+.tw-card {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
 }

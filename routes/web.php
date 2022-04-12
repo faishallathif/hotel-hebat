@@ -24,16 +24,22 @@ use App\Http\Controllers\LoginController;
 // });
 Route::domain('admin.localhost')->group(function () {
    
-    Route::middleware('guest')->group(function () {
-        Route::get('/login', function () {
-            return view('admin/login');    
-        })->name('login');
+    // Route::middleware('guest')->group(function () {
+    //     Route::get('/login', function () {
+    //         return view('admin/login');    
+    //     })->name('login');
+    // });
+    // Route::post('/login',[LoginController::class,"index"]);
+    // Route::middleware('auth')->group(function () {
+    //     Route::get('/', function () {
+    //         return view('admin/index');
+    //     });
+    // });
+    Route::get('/', function () {
+        return view('layouts.admin');
     });
-    Route::post('/login',[LoginController::class,"index"]);
-    Route::middleware('auth')->group(function () {
-        Route::get('/', function () {
-            return view('admin/index');
-        });
+    Route::get('/{path}', function () {
+        return view('layouts.admin');
     });
 });
 
