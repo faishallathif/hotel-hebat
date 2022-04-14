@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(["middleware" => ["jwt.verify"]], function () {
     Route::resource('pesanan', PesananController::class);
     Route::get("pesanan/cetak/{id}",[PesananController::class,"cetak_pdf"]);
+    Route::resource("pesanan",PesananController::class);
 });
 Route::resource('kamar', KamarController::class);
 Route::resource('detail-kamar', DetailKamarController::class);

@@ -9,16 +9,16 @@ const routes = [
         component: require('../views/beranda/Home.vue').default,
     },
     {
-        path: "/kamar", 
-        component: require('../views/admin/kamar/index.vue').default,
-    },
-    {
-        path: "/fasilitas", 
-        component: require('../views/admin/fasilitas/index.vue').default,
+        path: "/pesan", 
+        component: require('../views/pesan/Pesan.vue').default,
     },
     {
         path: "/pesanan", 
-        component: require('../views/admin/pesanan/index.vue').default,
+        component: require('../views/pesan/Pesanan.vue').default,
+    },
+    {
+        path: "/login", 
+        component: require('../views/tamu/LoginTamu.vue').default,
     },
 ]
 export default new VueRouter({

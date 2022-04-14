@@ -22,19 +22,15 @@ use App\Http\Controllers\LoginController;
 //         "title" => "hello UKOM"
 //     ]);
 // });
+Route::domain('resepsionis.localhost')->group(function () {
+    Route::get('/', function () {
+        return view('layouts.resepsionis');
+    });
+    Route::get('/{path}', function () {
+        return view('layouts.resepsionis');
+    });
+});
 Route::domain('admin.localhost')->group(function () {
-   
-    // Route::middleware('guest')->group(function () {
-    //     Route::get('/login', function () {
-    //         return view('admin/login');    
-    //     })->name('login');
-    // });
-    // Route::post('/login',[LoginController::class,"index"]);
-    // Route::middleware('auth')->group(function () {
-    //     Route::get('/', function () {
-    //         return view('admin/index');
-    //     });
-    // });
     Route::get('/', function () {
         return view('layouts.admin');
     });

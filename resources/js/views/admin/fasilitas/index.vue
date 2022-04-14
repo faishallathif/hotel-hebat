@@ -158,12 +158,12 @@ export default {
         this.tableData = res.data.data;
       });
     },
-    tambah() {    
-      FasilitasService.post(this.formData).then((res) => {
-        this.tableData = res.data.data;
-        this.centerDialogVisible = false;
-        this.get();
-      });
+    tambah() {
+        FasilitasService.post(this.formData).then((res) => {
+          this.tableData = res.data.data;
+          this.centerDialogVisible = false;
+          this.get();
+        });
     },
     handleDelete(id) {
       FasilitasService.delete(id).then((res) => {

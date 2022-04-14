@@ -24,7 +24,7 @@
                 <button type="submit" class="btn-ungu2 tw-rounded-2xl tw-w-52">Login</button>
             </form>
         </div>
-        <div class="position-fixed top-0 end-0 p-3 " style="z-index: 11">
+        <div class="position-fixed top-0 end-0 p-3 " style="z-index: 11" v-if="$route.query.message">
             <div class="toast align-items-center show bg-white" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="justify-between">
                     <div class="toast-body text-dark">

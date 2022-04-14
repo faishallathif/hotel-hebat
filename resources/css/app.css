@@ -80,7 +80,10 @@ input::placeholder{
     left: 15px;
 }
 .tw-card{
-    @apply flex-col-center tw-shadow-lg tw-bg-white tw-px-5 tw-py-8;
+    @apply flex-col-center tw-shadow-lg tw-bg-white tw-px-5 tw-py-3;
+}
+.tw-card2{
+    @apply tw-shadow-lg tw-bg-white tw-px-5 tw-py-3 tw-rounded-2xl;
 }
 .title{
     @apply tw-text-2xl tw-font-bold;

@@ -12,6 +12,10 @@ class DetailKamarController extends Controller
 {
     //
     public function index(){
+        $data;
+        if(request()->id){
+            $data=DetailKamar::where("kamar_id",request()->id);
+        }
         $data= DetailKamar::all();
         return ResponseUtils::getValResponse(true, $data);
     }

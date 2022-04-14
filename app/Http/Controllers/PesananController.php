@@ -18,35 +18,14 @@ class PesananController extends Controller
      */
     public function index()
     {
+        // return request()->id;
+        $data = Pesanan::where("user_id",request()->id)->get();
+        if(request()->id){
+            $data = Pesanan::where("user_id",request()->id)->get();
+        };
         $data = Pesanan::all();
-        // try {
-        //     $data = Pesanan::get()->map(function($item) {
-        //         // $kamar = Kamar::whereIn('id', json_decode($item->kamar_id))->get();
-        //         $kamars = collect(json_decode($item->kamar_id, true))->map(function($value){
-        //             $fasilitas = Kamar::find($value);
-        //             $realFasilitas = collect( json_decode($fasilitas->fasilitas,true))->map(function($v){
-        //                 return Fasilitas::find($v);
-        //             });
-        //             $realKamar = Kamar::find($value);
-        //             $realKamar->fasilitas = $realFasilitas;
-        //             return $realKamar;
-        //         }) ;
-        //         // $kamars = json_decode($item->kamar_id, true);
-        //         return [
-        //             'id' => $item->id,
-        //             'kamar' => $kamars,
-        //             "harga"=>$item->harga,
-        //             "jumlah"=>$item->jumlah,
-        //             "tipe_kamar"=>$item->tipe_kamar
-        //         ];
-        //     });
-
             return ResponseUtils::getValResponse(true, $data);
 
-        // } catch(Exception $e) {
-        //     return ResponseUtils::getValResponse(true, $e->getMessage());
-
-        // }
     }
     /**
      * Show the form for creating a new resource.

@@ -11,9 +11,14 @@ class FasilitasService {
         return axios.get(BaseUrl+ ApiRoute.fasilitas);
     }
     post(formData){
+        let form = new FormData();
+        form.append('gambar_fasilitas',formData.gambar_fasilitas)
+        form.append('nama_fasilitas',formData.nama_fasilitas)
+        form.append('status',formData.status)
         if(formData.gambar_fasilitas){
-            return axios.post(BaseUrl+ApiRoute.fasilitas, formData,
-                { headers: { 'Content-Type': 'multipart/form-data' } }
+            console.log(form);
+            return axios.post("http://localhost:8000/api/fasilitas", form,
+                { headers: { "Content-Type": "multipart/form-data" } }
                 );
         }
         return axios.post(BaseUrl+ApiRoute.fasilitas, formData)

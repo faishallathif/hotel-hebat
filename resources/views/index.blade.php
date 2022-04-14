@@ -12,7 +12,7 @@
     <div id="app" >
         {{-- <nav-bar></nav-bar> --}}
         <router-view></router-view>
-        <component-footer></component-footer>
+        {{-- <component-footer></component-footer> --}}
     </div>
     {{-- container vue --}}
 
